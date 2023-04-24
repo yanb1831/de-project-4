@@ -86,11 +86,9 @@ class ReportCdmDataSaver:
                         %(courier_tips_sum)s,
                         %(courier_reward_sum)s
                     )
-                    ON CONFLICT (courier_id) DO UPDATE
+                    ON CONFLICT (courier_id, settlement_year, settlement_month) DO UPDATE
                     SET
                         courier_name = EXCLUDED.courier_name,
-                        settlement_year = EXCLUDED.settlement_year,
-                        settlement_month = EXCLUDED.settlement_month,
                         orders_count = EXCLUDED.orders_count,
                         orders_total_sum = EXCLUDED.orders_total_sum,
                         rate_avg = EXCLUDED.rate_avg,
